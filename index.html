@@ -2,352 +2,506 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movietruch - Tu Portal de Películas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>Movietruch</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overscroll-behavior: none;
         }
+        
         .dark-bg {
-            background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+            background: linear-gradient(180deg, #0a0a0a 0%, #151515 50%, #0a0a0a 100%);
+            min-height: 100vh;
+            min-height: 100dvh;
         }
+        
         .dark-card {
-            background: linear-gradient(145deg, #1e1e1e 0%, #2a2a2a 100%);
-            border: 1px solid #333;
+            background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
+            border: 1px solid #2a2a2a;
+            min-height: 100px;
         }
-        .dark-card:hover {
-            background: linear-gradient(145deg, #2a2a2a 0%, #363636 100%);
-            border-color: #444;
+        
+        .dark-card:active {
+            background: linear-gradient(145deg, #252525 0%, #303030 100%);
+            border-color: #404040;
+            transform: scale(0.98);
         }
+        
         .card-hover {
-            transition: all 0.3s ease;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
+        
         .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
+        
+        @media (hover: none) {
+            .card-hover:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+        
         .sports-badge {
             background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+            font-size: 10px;
+            padding: 2px 8px;
+        }
+        
+        .new-badge {
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+            font-size: 10px;
+            padding: 2px 8px;
+        }
+        
+        .touch-target {
+            min-height: 48px;
+            min-width: 48px;
+        }
+        
+        @media (max-width: 640px) {
+            .mobile-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .mobile-card {
+                padding: 16px;
+                min-height: 120px;
+            }
+            
+            .mobile-title {
+                font-size: 1.25rem;
+            }
+            
+            .mobile-subtitle {
+                font-size: 0.875rem;
+            }
+            
+            .mobile-section-title {
+                font-size: 1.5rem;
+            }
+            
+            .mobile-emoji {
+                font-size: 2rem;
+            }
+            
+            .mobile-padding {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+        }
+        
+        @media (max-width: 380px) {
+            .mobile-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .tablet-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .safe-area-bottom {
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+        
+        .loading-skeleton {
+            background: linear-gradient(90deg, #1a1a1a 25%, #252525 50%, #1a1a1a 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
     </style>
 </head>
-<body class="dark-bg min-h-screen">
-    <div class="container mx-auto px-4 py-12">
+<body class="dark-bg">
+    <div class="container mx-auto px-3 sm:px-4 py-6 sm:py-8 md:py-12 safe-area-bottom">
         <!-- Header -->
-        <header class="text-center mb-16">
-            <h1 class="text-6xl font-bold text-gray-100 mb-4 tracking-tight drop-shadow-lg bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+        <header class="text-center mb-8 sm:mb-12 md:mb-16">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-3 sm:mb-4 tracking-tight bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                 🎬 Movietruch
             </h1>
-            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-                Tu colección de los mejores sitios para ver películas y deportes online
+            <p class="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto px-2 sm:px-0">
+                Tu colección de los mejores sitios para ver películas y deportes
             </p>
         </header>
 
-        <!-- Links Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <!-- Links Grid Principal -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-7xl mx-auto mobile-grid">
             
             <!-- Cuevana -->
             <a href="https://cuevana8hd.pro/" target="_blank" rel="noopener noreferrer" 
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🎥</span>
-                    <span class="text-gray-500 text-sm">HD</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🎥</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">HD</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">Cuevana 8 HD</h3>
-                <p class="text-gray-400 text-sm mt-2">Películas y series en alta definición</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">Cuevana 8 HD</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Películas y series en alta definición</p>
             </a>
 
             <!-- PelisPlus 2 HD -->
             <a href="https://pelisplus2hd.watch/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">📺</span>
-                    <span class="text-gray-500 text-sm">HD</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">📺</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">HD</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">PelisPlus 2 HD</h3>
-                <p class="text-gray-400 text-sm mt-2">Amplio catálogo de contenido</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">PelisPlus 2 HD</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Amplio catálogo de contenido</p>
             </a>
 
             <!-- Enlace Ly -->
             <a href="https://saldo-ly.enlace.ly/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🔗</span>
-                    <span class="text-gray-500 text-sm">Link</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🔗</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">Link</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">Enlace Ly</h3>
-                <p class="text-gray-400 text-sm mt-2">Enlaces directos a contenido</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">Enlace Ly</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Enlaces directos a contenido</p>
             </a>
 
             <!-- Pelispedia -->
             <a href="https://pelispedia.mov/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">📚</span>
-                    <span class="text-gray-500 text-sm">MOV</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">📚</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">MOV</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">Pelispedia</h3>
-                <p class="text-gray-400 text-sm mt-2">Enciclopedia de películas</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">Pelispedia</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Enciclopedia de películas</p>
             </a>
 
             <!-- PelisFlix HD -->
             <a href="https://pelisflixhd.com.es/home/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🍿</span>
-                    <span class="text-gray-500 text-sm">HD</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🍿</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">HD</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">PelisFlix HD</h3>
-                <p class="text-gray-400 text-sm mt-2">Streaming de calidad premium</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">PelisFlix HD</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Streaming de calidad premium</p>
             </a>
 
             <!-- FlixNet -->
             <a href="https://flixnet.site/pelisplus/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🌐</span>
-                    <span class="text-gray-500 text-sm">Site</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🌐</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">Site</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">FlixNet</h3>
-                <p class="text-gray-400 text-sm mt-2">Tu red de entretenimiento</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">FlixNet</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Tu red de entretenimiento</p>
             </a>
 
             <!-- Hoofoot (DEPORTES) -->
             <a href="https://hoofoot.ru/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6 relative overflow-hidden border-l-4 border-l-pink-500">
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center relative overflow-hidden border-l-4 border-l-pink-500">
                 <div class="absolute top-2 right-2 sports-badge text-white text-xs px-2 py-1 rounded-full font-bold">
-                    DEPORTES
+                    ⚽
                 </div>
-                <div class="flex items-center justify-between mb-3 mt-2">
-                    <span class="text-4xl">⚽</span>
-                    <span class="text-gray-500 text-sm">RU</span>
+                <div class="flex items-center justify-between mb-2 sm:mb-3 mt-4 sm:mt-5">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🏟️</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">RU</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">Hoofoot</h3>
-                <p class="text-gray-400 text-sm mt-2">Eventos deportivos en vivo</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">Hoofoot</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Eventos deportivos en vivo</p>
             </a>
 
             <!-- LocoPelis -->
             <a href="https://www.locopelis.com/locopelis" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🤪</span>
-                    <span class="text-gray-500 text-sm">Fun</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🤪</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">Fun</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">LocoPelis</h3>
-                <p class="text-gray-400 text-sm mt-2">Diversión sin límites</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">LocoPelis</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Diversión sin límites</p>
             </a>
 
             <!-- Cliver -->
             <a href="https://cliver.mom/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🎭</span>
-                    <span class="text-gray-500 text-sm">Mom</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🎭</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">Mom</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">Cliver</h3>
-                <p class="text-gray-400 text-sm mt-2">Clásicos y estrenos</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">Cliver</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Clásicos y estrenos</p>
             </a>
 
             <!-- RepelisPlus -->
             <a href="https://repelisplus.my/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🔄</span>
-                    <span class="text-gray-500 text-sm">MY</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🔄</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">MY</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">RepelisPlus</h3>
-                <p class="text-gray-400 text-sm mt-2">Tu biblioteca de películas</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">RepelisPlus</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Tu biblioteca de películas</p>
             </a>
 
             <!-- MoviesFree -->
             <a href="https://moviesfree.cv/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🆓</span>
-                    <span class="text-gray-500 text-sm">CV</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🆓</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">CV</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">MoviesFree</h3>
-                <p class="text-gray-400 text-sm mt-2">Películas sin costo</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">MoviesFree</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Películas sin costo</p>
             </a>
 
             <!-- Pelispedia HD -->
             <a href="https://pelispediahd.com/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">📖</span>
-                    <span class="text-gray-500 text-sm">HD</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">📖</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">HD</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">Pelispedia HD</h3>
-                <p class="text-gray-400 text-sm mt-2">Alta definición garantizada</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">Pelispedia HD</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Alta definición garantizada</p>
             </a>
 
             <!-- Popcorn Time -->
             <a href="https://watch.popcorntime.app/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🍿</span>
-                    <span class="text-gray-500 text-sm">App</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🍿</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">App</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">Popcorn Time</h3>
-                <p class="text-gray-400 text-sm mt-2">La experiencia cinematográfica</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">Popcorn Time</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">La experiencia cinematográfica</p>
             </a>
 
             <!-- FlixTor -->
             <a href="https://flixtor.to/home" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🎯</span>
-                    <span class="text-gray-500 text-sm">TO</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🎯</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">TO</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">FlixTor</h3>
-                <p class="text-gray-400 text-sm mt-2">Tu destino de streaming</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">FlixTor</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Tu destino de streaming</p>
             </a>
 
             <!-- Movie4KTo -->
             <a href="https://ww1.lat/movie4kto/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🎬</span>
-                    <span class="text-gray-500 text-sm">4K</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🎬</span>
+                    <span class="text-gray-500 text-xs sm:text-sm">4K</span>
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">Movie4KTo</h3>
-                <p class="text-gray-400 text-sm mt-2">Calidad 4K Ultra HD</p>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">Movie4KTo</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Calidad 4K Ultra HD</p>
             </a>
 
         </div>
 
         <!-- NUEVAS Section -->
-        <div class="mt-16 mb-8">
-            <div class="flex items-center justify-center gap-4 mb-8">
-                <div class="h-px bg-gradient-to-r from-transparent via-green-500 to-transparent w-32"></div>
-                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">
+        <div class="mt-10 sm:mt-12 md:mt-16 mb-6 sm:mb-8">
+            <div class="flex items-center justify-center gap-2 sm:gap-4 mb-6 sm:mb-8">
+                <div class="h-px bg-gradient-to-r from-transparent via-green-500 to-transparent w-16 sm:w-24 md:w-32"></div>
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500 mobile-section-title">
                     ✨ NUEVAS
                 </h2>
-                <div class="h-px bg-gradient-to-r from-transparent via-green-500 to-transparent w-32"></div>
+                <div class="h-px bg-gradient-to-r from-transparent via-green-500 to-transparent w-16 sm:w-24 md:w-32"></div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-7xl mx-auto mobile-grid">
             
             <!-- Gnula HD -->
             <a href="https://ww3.gnulahd.nu/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6 border-l-4 border-l-green-500">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🌟</span>
-                    <span class="text-green-400 text-sm font-bold">NUEVO</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center border-l-4 border-l-green-500 relative overflow-hidden">
+                <div class="absolute top-2 right-2 new-badge text-white rounded-full font-bold text-xs">
+                    NUEVO
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">Gnula HD</h3>
-                <p class="text-gray-400 text-sm mt-2">Contenido en alta calidad</p>
+                <div class="flex items-center justify-between mb-2 sm:mb-3 mt-4 sm:mt-5">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🌟</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">Gnula HD</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Contenido en alta calidad</p>
             </a>
 
             <!-- LA Movie -->
             <a href="https://la.movie/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6 border-l-4 border-l-green-500">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🎪</span>
-                    <span class="text-green-400 text-sm font-bold">NUEVO</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center border-l-4 border-l-green-500 relative overflow-hidden">
+                <div class="absolute top-2 right-2 new-badge text-white rounded-full font-bold text-xs">
+                    NUEVO
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">LA Movie</h3>
-                <p class="text-gray-400 text-sm mt-2">Cine de Los Angeles</p>
+                <div class="flex items-center justify-between mb-2 sm:mb-3 mt-4 sm:mt-5">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🎪</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">LA Movie</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Cine de Los Angeles</p>
             </a>
 
             <!-- Pelis28 -->
             <a href="https://pelis28.in/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6 border-l-4 border-l-green-500">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🔢</span>
-                    <span class="text-green-400 text-sm font-bold">NUEVO</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center border-l-4 border-l-green-500 relative overflow-hidden">
+                <div class="absolute top-2 right-2 new-badge text-white rounded-full font-bold text-xs">
+                    NUEVO
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">Pelis28</h3>
-                <p class="text-gray-400 text-sm mt-2">Películas variadas</p>
+                <div class="flex items-center justify-between mb-2 sm:mb-3 mt-4 sm:mt-5">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🔢</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">Pelis28</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Películas variadas</p>
             </a>
 
             <!-- SeriesLan -->
             <a href="https://serieslan.lat/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6 border-l-4 border-l-green-500">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">📺</span>
-                    <span class="text-green-400 text-sm font-bold">NUEVO</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center border-l-4 border-l-green-500 relative overflow-hidden">
+                <div class="absolute top-2 right-2 new-badge text-white rounded-full font-bold text-xs">
+                    NUEVO
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">SeriesLan</h3>
-                <p class="text-gray-400 text-sm mt-2">Series en español latino</p>
+                <div class="flex items-center justify-between mb-2 sm:mb-3 mt-4 sm:mt-5">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">📺</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">SeriesLan</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Series en español latino</p>
             </a>
 
             <!-- MegaDeDe -->
             <a href="https://megadede.mobi/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6 border-l-4 border-l-green-500">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">📱</span>
-                    <span class="text-green-400 text-sm font-bold">NUEVO</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center border-l-4 border-l-green-500 relative overflow-hidden">
+                <div class="absolute top-2 right-2 new-badge text-white rounded-full font-bold text-xs">
+                    NUEVO
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">MegaDeDe</h3>
-                <p class="text-gray-400 text-sm mt-2">App de streaming móvil</p>
+                <div class="flex items-center justify-between mb-2 sm:mb-3 mt-4 sm:mt-5">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">📱</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">MegaDeDe</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">App de streaming móvil</p>
             </a>
 
             <!-- SeriesMetro -->
             <a href="https://www3.seriesmetro.net/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6 border-l-4 border-l-green-500">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🚇</span>
-                    <span class="text-green-400 text-sm font-bold">NUEVO</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center border-l-4 border-l-green-500 relative overflow-hidden">
+                <div class="absolute top-2 right-2 new-badge text-white rounded-full font-bold text-xs">
+                    NUEVO
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">SeriesMetro</h3>
-                <p class="text-gray-400 text-sm mt-2">Series por categorías</p>
+                <div class="flex items-center justify-between mb-2 sm:mb-3 mt-4 sm:mt-5">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🚇</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">SeriesMetro</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Series por categorías</p>
             </a>
 
             <!-- HDFull -->
             <a href="https://hdfull.sbs/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6 border-l-4 border-l-green-500">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">💎</span>
-                    <span class="text-green-400 text-sm font-bold">NUEVO</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center border-l-4 border-l-green-500 relative overflow-hidden">
+                <div class="absolute top-2 right-2 new-badge text-white rounded-full font-bold text-xs">
+                    NUEVO
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">HDFull</h3>
-                <p class="text-gray-400 text-sm mt-2">Máxima calidad HD</p>
+                <div class="flex items-center justify-between mb-2 sm:mb-3 mt-4 sm:mt-5">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">💎</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">HDFull</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Máxima calidad HD</p>
             </a>
 
             <!-- PirloTV2 -->
             <a href="https://www.pirlotv2.me/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6 border-l-4 border-l-green-500">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">⚽</span>
-                    <span class="text-green-400 text-sm font-bold">NUEVO</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center border-l-4 border-l-green-500 relative overflow-hidden">
+                <div class="absolute top-2 right-2 new-badge text-white rounded-full font-bold text-xs">
+                    NUEVO
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">PirloTV2</h3>
-                <p class="text-gray-400 text-sm mt-2">Deportes en vivo</p>
+                <div class="flex items-center justify-between mb-2 sm:mb-3 mt-4 sm:mt-5">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">⚽</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">PirloTV2</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Deportes en vivo</p>
             </a>
 
             <!-- Streamed -->
             <a href="https://streamed.pk/" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6 border-l-4 border-l-green-500">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🌊</span>
-                    <span class="text-green-400 text-sm font-bold">NUEVO</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center border-l-4 border-l-green-500 relative overflow-hidden">
+                <div class="absolute top-2 right-2 new-badge text-white rounded-full font-bold text-xs">
+                    NUEVO
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">Streamed</h3>
-                <p class="text-gray-400 text-sm mt-2">Streaming continuo</p>
+                <div class="flex items-center justify-between mb-2 sm:mb-3 mt-4 sm:mt-5">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🌊</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">Streamed</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Streaming continuo</p>
             </a>
 
             <!-- RBTV Plus -->
             <a href="https://www.rbtvplus17.lol/es/football.html" target="_blank" rel="noopener noreferrer"
-               class="card-hover dark-card rounded-2xl p-6 border-l-4 border-l-green-500">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-4xl">🏆</span>
-                    <span class="text-green-400 text-sm font-bold">NUEVO</span>
+               class="card-hover dark-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 touch-target flex flex-col justify-center border-l-4 border-l-green-500 relative overflow-hidden">
+                <div class="absolute top-2 right-2 new-badge text-white rounded-full font-bold text-xs">
+                    NUEVO
                 </div>
-                <h3 class="text-gray-100 font-semibold text-lg">RBTV Plus</h3>
-                <p class="text-gray-400 text-sm mt-2">Fútbol y deportes</p>
+                <div class="flex items-center justify-between mb-2 sm:mb-3 mt-4 sm:mt-5">
+                    <span class="text-3xl sm:text-4xl mobile-emoji">🏆</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-base sm:text-lg mobile-title">RBTV Plus</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">Fútbol y deportes</p>
             </a>
 
         </div>
 
         <!-- Footer -->
-        <footer class="text-center mt-16 text-gray-500">
-            <p class="mb-2">⚠️ Movietruch solo proporciona enlaces a sitios de terceros</p>
-            <p class="text-sm text-gray-600">© 2024 Movietruch - Todos los derechos reservados</p>
+        <footer class="text-center mt-10 sm:mt-12 md:mt-16 text-gray-500 px-4">
+            <p class="mb-2 text-sm">⚠️ Movietruch solo proporciona enlaces a sitios de terceros</p>
+            <p class="text-xs text-gray-600">© 2024 Movietruch</p>
         </footer>
     </div>
+
+    <script>
+        // Optimización para móviles Android
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prevenir zoom en inputs (para Android)
+            document.addEventListener('gesturestart', function(e) {
+                e.preventDefault();
+            });
+            
+            // Mejorar respuesta táctil
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                }, {passive: true});
+                
+                card.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                }, {passive: true});
+            });
+            
+            // Soporte para PWA
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    // Aquí se podría registrar un service worker
+                });
+            }
+        });
+    </script>
 </body>
 </html>
