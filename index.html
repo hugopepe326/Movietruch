@@ -8,9 +8,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <title>Movietruch</title>
+    <title>FEDEFLIX</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
         * {
             -webkit-tap-highlight-color: transparent;
@@ -136,15 +136,43 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
+        
+        /* Logo FEDEFLIX estilo Netflix */
+        .fedeflix-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            font-weight: bold;
+            color: #E50914;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(180deg, #ff4d4d 0%, #E50914 50%, #b20710 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            transform: scaleY(1.2);
+        }
+        
+        @media (max-width: 640px) {
+            .fedeflix-logo {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .fedeflix-logo {
+                font-size: 3.5rem;
+            }
+        }
     </style>
 </head>
 <body class="dark-bg">
     <div class="container mx-auto px-3 sm:px-4 py-6 sm:py-8 md:py-12 safe-area-bottom">
         <!-- Header -->
         <header class="text-center mb-8 sm:mb-12 md:mb-16">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-3 sm:mb-4 tracking-tight bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                🎬 Movietruch
-            </h1>
+            <div class="fedeflix-logo mb-3 sm:mb-4">FEDEFLIX</div>
             <p class="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto px-2 sm:px-0">
                 Tu colección de los mejores sitios para ver películas y deportes
             </p>
@@ -614,8 +642,8 @@
 
         <!-- Footer -->
         <footer class="text-center mt-10 sm:mt-12 md:mt-16 text-gray-500 px-4">
-            <p class="mb-2 text-sm">⚠️ Movietruch solo proporciona enlaces a sitios de terceros</p>
-            <p class="text-xs text-gray-600">© 2024 Movietruch</p>
+            <p class="mb-2 text-sm">⚠️ FEDEFLIX solo proporciona enlaces a sitios de terceros</p>
+            <p class="text-xs text-gray-600">© 2024 FEDEFLIX</p>
         </footer>
     </div>
 
