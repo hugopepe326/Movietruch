@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movietruch - Tu Portal de Películas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .dark-bg {
+            background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+        }
+        .dark-card {
+            background: linear-gradient(145deg, #1e1e1e 0%, #2a2a2a 100%);
+            border: 1px solid #333;
+        }
+        .dark-card:hover {
+            background: linear-gradient(145deg, #2a2a2a 0%, #363636 100%);
+            border-color: #444;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .sports-badge {
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        }
+    </style>
+</head>
+<body class="dark-bg min-h-screen">
+    <div class="container mx-auto px-4 py-12">
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <h1 class="text-6xl font-bold text-gray-100 mb-4 tracking-tight drop-shadow-lg bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                🎬 Movietruch
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                Tu colección de los mejores sitios para ver películas y deportes online
+            </p>
+        </header>
+
+        <!-- Links Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            
+            <!-- Cuevana -->
+            <a href="https://cuevana8hd.pro/" target="_blank" rel="noopener noreferrer" 
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">🎥</span>
+                    <span class="text-gray-500 text-sm">HD</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">Cuevana 8 HD</h3>
+                <p class="text-gray-400 text-sm mt-2">Películas y series en alta definición</p>
+            </a>
+
+            <!-- PelisPlus 2 HD -->
+            <a href="https://pelisplus2hd.watch/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">📺</span>
+                    <span class="text-gray-500 text-sm">HD</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">PelisPlus 2 HD</h3>
+                <p class="text-gray-400 text-sm mt-2">Amplio catálogo de contenido</p>
+            </a>
+
+            <!-- Enlace Ly -->
+            <a href="https://saldo-ly.enlace.ly/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">🔗</span>
+                    <span class="text-gray-500 text-sm">Link</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">Enlace Ly</h3>
+                <p class="text-gray-400 text-sm mt-2">Enlaces directos a contenido</p>
+            </a>
+
+            <!-- Pelispedia -->
+            <a href="https://pelispedia.mov/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">📚</span>
+                    <span class="text-gray-500 text-sm">MOV</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">Pelispedia</h3>
+                <p class="text-gray-400 text-sm mt-2">Enciclopedia de películas</p>
+            </a>
+
+            <!-- PelisFlix HD -->
+            <a href="https://pelisflixhd.com.es/home/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">🍿</span>
+                    <span class="text-gray-500 text-sm">HD</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">PelisFlix HD</h3>
+                <p class="text-gray-400 text-sm mt-2">Streaming de calidad premium</p>
+            </a>
+
+            <!-- FlixNet -->
+            <a href="https://flixnet.site/pelisplus/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">🌐</span>
+                    <span class="text-gray-500 text-sm">Site</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">FlixNet</h3>
+                <p class="text-gray-400 text-sm mt-2">Tu red de entretenimiento</p>
+            </a>
+
+            <!-- Hoofoot (DEPORTES) -->
+            <a href="https://hoofoot.ru/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6 relative overflow-hidden border-l-4 border-l-pink-500">
+                <div class="absolute top-2 right-2 sports-badge text-white text-xs px-2 py-1 rounded-full font-bold">
+                    DEPORTES
+                </div>
+                <div class="flex items-center justify-between mb-3 mt-2">
+                    <span class="text-4xl">⚽</span>
+                    <span class="text-gray-500 text-sm">RU</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">Hoofoot</h3>
+                <p class="text-gray-400 text-sm mt-2">Eventos deportivos en vivo</p>
+            </a>
+
+            <!-- LocoPelis -->
+            <a href="https://www.locopelis.com/locopelis" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">🤪</span>
+                    <span class="text-gray-500 text-sm">Fun</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">LocoPelis</h3>
+                <p class="text-gray-400 text-sm mt-2">Diversión sin límites</p>
+            </a>
+
+            <!-- Cliver -->
+            <a href="https://cliver.mom/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">🎭</span>
+                    <span class="text-gray-500 text-sm">Mom</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">Cliver</h3>
+                <p class="text-gray-400 text-sm mt-2">Clásicos y estrenos</p>
+            </a>
+
+            <!-- RepelisPlus -->
+            <a href="https://repelisplus.my/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">🔄</span>
+                    <span class="text-gray-500 text-sm">MY</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">RepelisPlus</h3>
+                <p class="text-gray-400 text-sm mt-2">Tu biblioteca de películas</p>
+            </a>
+
+            <!-- MoviesFree -->
+            <a href="https://moviesfree.cv/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">🆓</span>
+                    <span class="text-gray-500 text-sm">CV</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">MoviesFree</h3>
+                <p class="text-gray-400 text-sm mt-2">Películas sin costo</p>
+            </a>
+
+            <!-- Pelispedia HD -->
+            <a href="https://pelispediahd.com/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">📖</span>
+                    <span class="text-gray-500 text-sm">HD</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">Pelispedia HD</h3>
+                <p class="text-gray-400 text-sm mt-2">Alta definición garantizada</p>
+            </a>
+
+            <!-- Popcorn Time -->
+            <a href="https://watch.popcorntime.app/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">🍿</span>
+                    <span class="text-gray-500 text-sm">App</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">Popcorn Time</h3>
+                <p class="text-gray-400 text-sm mt-2">La experiencia cinematográfica</p>
+            </a>
+
+            <!-- FlixTor -->
+            <a href="https://flixtor.to/home" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">🎯</span>
+                    <span class="text-gray-500 text-sm">TO</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">FlixTor</h3>
+                <p class="text-gray-400 text-sm mt-2">Tu destino de streaming</p>
+            </a>
+
+            <!-- Movie4KTo -->
+            <a href="https://ww1.lat/movie4kto/" target="_blank" rel="noopener noreferrer"
+               class="card-hover dark-card rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-4xl">🎬</span>
+                    <span class="text-gray-500 text-sm">4K</span>
+                </div>
+                <h3 class="text-gray-100 font-semibold text-lg">Movie4KTo</h3>
+                <p class="text-gray-400 text-sm mt-2">Calidad 4K Ultra HD</p>
+            </a>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 text-gray-500">
+            <p class="mb-2">⚠️ Movietruch solo proporciona enlaces a sitios de terceros</p>
+            <p class="text-sm text-gray-600">© 2024 Movietruch - Todos los derechos reservados</p>
+        </footer>
+    </div>
+</body>
+</html>
